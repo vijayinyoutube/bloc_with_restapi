@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
           } else if (state is HomePageLoaded) {
             return buildLoadedLayout();
           } else {
-            return buildLoadingLayout(); //buildInitialInput();
+            return buildInitialInput();
           }
         },
       ),

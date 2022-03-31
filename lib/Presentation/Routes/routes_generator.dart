@@ -1,3 +1,4 @@
+import 'package:bloc_with_restapi/Data/Repository/author_repo.dart';
 import 'package:bloc_with_restapi/business_logic/bloc/home_page_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Screens/HomePage/UI/home_page.dart';
 
 class RouteGenerator {
-  final HomePageBloc _homePageBloc = HomePageBloc();
+  final HomePageBloc _homePageBloc = HomePageBloc(AuthorRepo());
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;

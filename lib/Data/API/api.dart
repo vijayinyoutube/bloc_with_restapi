@@ -1,0 +1,1 @@
+String apiBaseUrl = "http://message-list.appspot.com";
