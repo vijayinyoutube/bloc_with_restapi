@@ -36,32 +36,18 @@ class AuthorModel {
   }
 
   factory AuthorModel.fromMap(Map<String, dynamic> map) {
-    print(map);
     return AuthorModel(
-      id: map['messages']['id'] ?? 0,
-      content: map['messages']['content'] ?? '',
-      name: map['messages']['author']['name'] ?? '',
-      photoUrl: map['messages']['author']['photoUrl'] ?? '',
+      id: map['id']?.toInt() ?? 0,
+      content: map['content'] ?? '',
+      name: map['author']['name'] ?? '',
+      photoUrl: map['author']['photoUrl'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  // factory AuthorModel.fromJson(String source) {
-
-  //   // var parsed = jsonDecode(source) as Map<String, dynamic>;
-
-  //   // return parsed.map((key, value) => AuthorModel.fromMap(json)).toList();
-  // }
-
-  factory AuthorModel.fromJson(Map<String, dynamic> json) {
-    return AuthorModel(
-      id: json['messages']['id'] ?? 0,
-      content: json['messages']['content'] ?? '',
-      name: json['messages']['author']['name'] ?? '',
-      photoUrl: json['messages']['author']['photoUrl'] ?? '',
-    );
-  }
+  factory AuthorModel.fromJson(String source) =>
+      AuthorModel.fromMap(json.decode(source));
 
   @override
   String toString() {

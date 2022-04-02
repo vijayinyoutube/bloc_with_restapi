@@ -9,4 +9,4 @@ class HomePageLoading extends HomePageState {}
 
 class HomePageLoaded extends HomePageState {}
 
-class HomePageError extends HomePageState{}
+class HomePageError extends HomePageState {}
