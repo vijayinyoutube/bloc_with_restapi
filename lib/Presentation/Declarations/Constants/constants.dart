@@ -11,5 +11,5 @@ EdgeInsets kPadding = EdgeInsets.all(kSpacing);
 EdgeInsets kHPadding = EdgeInsets.symmetric(horizontal: kSpacing);
 EdgeInsets kVPadding = EdgeInsets.symmetric(horizontal: kSpacing);
 
-Color? primaryColor = Colors.orange;
+Color primaryColor = Colors.orange;
 

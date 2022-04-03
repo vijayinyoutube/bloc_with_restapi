@@ -5,10 +5,12 @@ import 'package:bloc_with_restapi/Presentation/Declarations/Constants/constants.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../Data/Models/author_model.dart';
 import '../../../../business_logic/bloc/home_page_bloc.dart';
 import '../../../Components/shimmer.dart';
 import '../../../Components/text_builder.dart';
 import '../Widgets/explore_btn.dart';
+import '../Widgets/list_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -26,7 +28,7 @@ class HomePage extends StatelessWidget {
           if (state is HomePageLoading) {
             return buildLoadingLayout();
           } else if (state is HomePageLoaded) {
-            return buildLoadedLayout();
+            return buildLoadedLayout(state.author);
           } else {
             return buildInitialInput(context);
           }
@@ -74,13 +76,13 @@ class HomePage extends StatelessWidget {
         return const ShimmerWidget();
       });
 
-  Widget buildLoadedLayout() => const Center(
-        child: Text("Loaded!!"),
-      );
+  Widget buildLoadedLayout(List<AuthorModel> author) =>
+      ListCardBuilder(author: author);
+
   ScaffoldFeatureController buildErrorLayout(BuildContext context) =>
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Please enter your age!'),
+          content: Text('Error'),
         ),
       );
 }

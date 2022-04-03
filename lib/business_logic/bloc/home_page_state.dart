@@ -7,6 +7,9 @@ class HomePageInitial extends HomePageState {}
 
 class HomePageLoading extends HomePageState {}
 
-class HomePageLoaded extends HomePageState {}
+class HomePageLoaded extends HomePageState {
+  final List<AuthorModel> author;
+  HomePageLoaded(this.author);
+}
 
 class HomePageError extends HomePageState {}
