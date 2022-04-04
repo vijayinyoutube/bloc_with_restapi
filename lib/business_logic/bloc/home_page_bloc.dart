@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_with_restapi/Data/Models/author_model.dart';
 import 'package:bloc_with_restapi/Data/Repository/author_repo.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Data/SharedPref/onboard_page.dart';
 
@@ -21,11 +22,23 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
           emit(HomePageLoaded(author));
         });
       } else if (event is FavData) {
-        print("Inside bloc");
         await OnboardPref().saveisFav(event.id, event.isFav);
-        
         emit(HomePageLoaded(author));
+      } else if (event is DeleteData) {
+        author.removeAt(event.index);
+
+        if (author.isNotEmpty) {
+          emit(HomePageLoaded(author));
+        } else {
+          await clearSharedPref();
+          emit(NoDataState());
+        }
       }
     });
+  }
+
+  clearSharedPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
   }
 }

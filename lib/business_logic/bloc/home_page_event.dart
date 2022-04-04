@@ -11,3 +11,9 @@ class FavData extends HomePageEvent {
 
   FavData(this.id, this.isFav);
 }
+
+class DeleteData extends HomePageEvent {
+  final int index;
+
+  DeleteData(this.index);
+}

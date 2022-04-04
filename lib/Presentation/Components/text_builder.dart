@@ -19,6 +19,7 @@ class TextBuilder extends StatelessWidget {
       textMsg,
       textAlign: textAlign,
       style: textStyle,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
