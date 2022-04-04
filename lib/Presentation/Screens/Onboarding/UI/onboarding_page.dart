@@ -9,7 +9,7 @@ import '../../../../Data/Models/author_model.dart';
 import '../../../../business_logic/bloc/home_page_bloc.dart';
 import '../../../Components/shimmer.dart';
 import '../../../Components/text_builder.dart';
-import '../Widgets/explore_btn.dart';
+import '../Widgets/btn_widget.dart';
 import '../Widgets/list_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -29,6 +29,8 @@ class HomePage extends StatelessWidget {
             return buildLoadingLayout();
           } else if (state is HomePageLoaded) {
             return buildLoadedLayout(state.author);
+          } else if (state is NoDataState) {
+            return buildNoDataLayout(context);
           } else {
             return buildInitialInput(context);
           }
@@ -47,9 +49,12 @@ class HomePage extends StatelessWidget {
             children: [
               ImageBuilder(imagePath: onboardingImages[0]),
               const HeightSpacer(myHeight: 50.00),
-              const TextBuilder(
-                textMsg: "Welcome to the Literature Community!",
-                textAlign: TextAlign.center,
+              Padding(
+                padding: kHPadding,
+                child: const TextBuilder(
+                  textMsg: "Welcome to the Literature Community!",
+                  textAlign: TextAlign.center,
+                ),
               ),
               HeightSpacer(myHeight: kSpacing),
               const SizedBox(
@@ -62,7 +67,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const HeightSpacer(myHeight: 50.00),
-              const ExploreBtn(),
+              GeneralBtn(
+                text: 'Explore',
+                eventFun: () =>
+                    BlocProvider.of<HomePageBloc>(cnxt).add(LoadData()),
+              ),
             ],
           ),
         ),
@@ -78,6 +87,22 @@ class HomePage extends StatelessWidget {
 
   Widget buildLoadedLayout(List<AuthorModel> author) =>
       ListCardBuilder(author: author);
+
+  Widget buildNoDataLayout(BuildContext context) => Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ImageBuilder(
+            imagePath: onboardingImages[1],
+          ),
+          HeightSpacer(myHeight: kSpacing),
+          GeneralBtn(
+            text: 'Reload',
+            eventFun: () =>
+                BlocProvider.of<HomePageBloc>(context).add(LoadData()),
+          )
+        ],
+      ));
 
   ScaffoldFeatureController buildErrorLayout(BuildContext context) =>
       ScaffoldMessenger.of(context).showSnackBar(
