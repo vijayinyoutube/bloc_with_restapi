@@ -5,11 +5,14 @@ class AuthorModel {
   final String content;
   final String name;
   final String photoUrl;
+  final String dataUpdate;
+  
   AuthorModel({
     required this.id,
     required this.content,
     required this.name,
     required this.photoUrl,
+    required this.dataUpdate,
   });
 
   AuthorModel copyWith({
@@ -17,12 +20,14 @@ class AuthorModel {
     String? content,
     String? name,
     String? photoUrl,
+    String? dataUpdate,
   }) {
     return AuthorModel(
       id: id ?? this.id,
       content: content ?? this.content,
       name: name ?? this.name,
       photoUrl: photoUrl ?? this.photoUrl,
+      dataUpdate: dataUpdate ?? this.dataUpdate,
     );
   }
 
@@ -32,15 +37,20 @@ class AuthorModel {
       'content': content,
       'name': name,
       'photoUrl': photoUrl,
+      'dataUpdate': dataUpdate,
     };
   }
 
-  factory AuthorModel.fromMap(Map<String, dynamic> map) {
+  
+
+
+   factory AuthorModel.fromMap(Map<String, dynamic> map) {
     return AuthorModel(
       id: map['id']?.toInt() ?? 0,
       content: map['content'] ?? '',
       name: map['author']['name'] ?? '',
       photoUrl: map['author']['photoUrl'] ?? '',
+      dataUpdate: map['updated'] ?? '',
     );
   }
 
@@ -51,22 +61,27 @@ class AuthorModel {
 
   @override
   String toString() {
-    return 'AuthorModel(id: $id, content: $content, name: $name, photoUrl: $photoUrl)';
+    return 'AuthorModel(id: $id, content: $content, name: $name, photoUrl: $photoUrl, dataUpdate: $dataUpdate)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is AuthorModel &&
-        other.id == id &&
-        other.content == content &&
-        other.name == name &&
-        other.photoUrl == photoUrl;
+      other.id == id &&
+      other.content == content &&
+      other.name == name &&
+      other.photoUrl == photoUrl &&
+      other.dataUpdate == dataUpdate;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ content.hashCode ^ name.hashCode ^ photoUrl.hashCode;
+    return id.hashCode ^
+      content.hashCode ^
+      name.hashCode ^
+      photoUrl.hashCode ^
+      dataUpdate.hashCode;
   }
 }

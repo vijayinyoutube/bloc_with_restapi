@@ -3,7 +3,7 @@ import 'package:bloc_with_restapi/business_logic/bloc/home_page_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../Screens/HomePage/UI/home_page.dart';
+import '../Screens/Onboarding/UI/onboarding_page.dart';
 
 class RouteGenerator {
   final HomePageBloc _homePageBloc = HomePageBloc(AuthorRepo());
