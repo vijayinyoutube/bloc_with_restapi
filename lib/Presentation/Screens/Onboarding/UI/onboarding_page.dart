@@ -1,14 +1,15 @@
-import 'package:bloc_with_restapi/Presentation/Components/image_builder.dart';
-import 'package:bloc_with_restapi/Presentation/Components/spacers.dart';
-import 'package:bloc_with_restapi/Presentation/Declarations/Constants/Images/image.dart';
-import 'package:bloc_with_restapi/Presentation/Declarations/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Data/Models/author_model.dart';
-import '../../../../business_logic/bloc/home_page_bloc.dart';
+import '../../../../Data/Models/details_models.dart';
+import '../../../../business_logic/bloc/HomePage_Bloc/home_page_bloc.dart';
+import '../../../Components/image_builder.dart';
 import '../../../Components/shimmer.dart';
+import '../../../Components/spacers.dart';
 import '../../../Components/text_builder.dart';
+import '../../../Declarations/Constants/Images/image.dart';
+import '../../../Declarations/Constants/constants.dart';
 import '../Widgets/btn_widget.dart';
 import '../Widgets/list_card.dart';
 
@@ -22,6 +23,9 @@ class HomePage extends StatelessWidget {
         listener: (context, state) {
           if (state is HomePageError) {
             buildErrorLayout(context);
+          } else if (state is DetailedView) {
+            Navigator.of(context).pushNamed('/detailspage',
+                arguments: DetailsPageModel(state.author, state.index));
           }
         },
         builder: (context, state) {

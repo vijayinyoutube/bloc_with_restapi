@@ -17,3 +17,9 @@ class DeleteData extends HomePageEvent {
 
   DeleteData(this.index);
 }
+
+class ShowDetailedView extends HomePageEvent {
+   final int index;
+
+  ShowDetailedView(this.index);
+}

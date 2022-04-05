@@ -20,6 +20,7 @@ class TextBuilder extends StatelessWidget {
       textAlign: textAlign,
       style: textStyle,
       overflow: TextOverflow.ellipsis,
+      maxLines: 100,
     );
   }
 }
