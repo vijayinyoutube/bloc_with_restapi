@@ -15,3 +15,9 @@ class HomePageLoaded extends HomePageState {
 class HomePageError extends HomePageState {}
 
 class NoDataState extends HomePageState {}
+
+class DetailedView extends HomePageState {
+  final List<AuthorModel> author;
+  final int index;
+  DetailedView(this.author, this.index);
+}
