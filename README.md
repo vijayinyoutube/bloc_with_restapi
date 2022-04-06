@@ -43,7 +43,8 @@ Visit my channel 👉 : https://www.youtube.com/channel/UCBC_Z7jla1GSITcqLKAtPxQ
 
 
 ## Dependencies
-```pubspec.yamlflutter_bloc: ^8.0.1
+```pubspec.yaml
+  flutter_bloc: ^8.0.1
   shimmer: ^2.0.0
   http: ^0.13.4
   shared_preferences: ^2.0.13
